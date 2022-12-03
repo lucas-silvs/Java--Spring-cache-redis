@@ -16,3 +16,13 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+
+  redis:
+    main:
+      host: "localhost"
+      port: 6379
+
+    replicas:
+      - host: "localhost"
+        port: 6479
