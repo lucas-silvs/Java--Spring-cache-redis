@@ -13,16 +13,27 @@ spring:
 
   #Setando padrao de nome da table para seguir o padrão CamelCase, senao informar ele utilizara a convesao de palavras separadas com underscores
   jpa:
+    properties:
+      hibernate:
+        format_sql: true
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
 
+
+
+
+  cache:
+    type: redis
 
   redis:
-    main:
-      host: "localhost"
+    timeout: 60s
+
+    master:
+      host: localhost
       port: 6379
 
-    replicas:
-      - host: "localhost"
+    slaves:
+      - host: localhost
         port: 6479

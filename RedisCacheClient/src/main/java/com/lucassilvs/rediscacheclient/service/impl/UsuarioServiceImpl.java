@@ -20,12 +20,16 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     public UsuarioContractResponse buscarUsuario(String cpf) {
-        Optional<UsuarioEntity> usuario = usuarioRepository.findByCpf(cpf);
+        Optional<UsuarioEntity> usuario = buscarUsuarioRepository(cpf);
 
         if(usuario.isEmpty()){
             throw new RuntimeException("Usuario de cpf "+ cpf +" não encontrado");
         }
         return new UsuarioContractResponse(usuario.get());
 
+    }
+
+    private Optional<UsuarioEntity> buscarUsuarioRepository(String cpf) {
+        return usuarioRepository.findByCpf(cpf);
     }
 }
