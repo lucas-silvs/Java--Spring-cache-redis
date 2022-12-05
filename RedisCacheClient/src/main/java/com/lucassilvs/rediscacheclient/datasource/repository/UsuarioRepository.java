@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends CrudRepository<UsuarioEntity, Long> {
 
-    @Cacheable(cacheNames = "usuarios", cacheManager = "cacheManager", key = "#cpf")
+    @Cacheable(cacheNames = "usuarios", unless = "#result == null")
     Optional<UsuarioEntity> findByCpf(String cpf);
 }

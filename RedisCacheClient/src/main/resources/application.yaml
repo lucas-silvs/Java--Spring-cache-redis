@@ -26,14 +26,14 @@ spring:
 
   cache:
     type: redis
+    redis:
+      time-to-live: 30s
 
   redis:
-    timeout: 60s
-
     master:
-      host: localhost
+      host: 127.0.0.1
       port: 6379
 
     slaves:
-      - host: localhost
+      - host: 127.0.0.1
         port: 6479
