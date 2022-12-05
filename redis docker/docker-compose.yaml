@@ -1,0 +1,24 @@
+version: "3.7"
+# docker para criação de duas instancias Redis, uma master que será executada na porta  6379
+# e uma replica que será executada na porta 6479 que será utilizada apenas para leitura
+services:
+  redis-master:
+    image: redis:latest
+    hostname: redis-master
+    volumes:
+      - redis_master:/data
+    ports:
+      - "6379:6379"
+
+  redis-slave:
+    image: redis:latest
+    hostname: redis-slave
+    volumes:
+      - redis_slave:/data
+    ports:
+      - "6479:6479"
+    command: redis-server --slaveof redis-master 6379
+
+volumes:
+  redis_master:
+  redis_slave:
